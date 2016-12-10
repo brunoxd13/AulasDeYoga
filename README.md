@@ -1,6 +1,7 @@
 # Aulas De Yoga 
 
 Resolução do Exercício de aulas de Yoga do Racha Cuca utilizando ProLog.
+https://rachacuca.com.br/logica/problemas/aula-de-yoga/
 
 Trabalho Pratico PROLOG
 Neste exercício iremos solucionar um problema lógico relativamente complexo utilizando o motor de inferência do PROLOG.
