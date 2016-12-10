@@ -1,7 +1,8 @@
 /*
-Exercicio:
+Exercício:
 https://rachacuca.com.br/logica/problemas/aula-de-yoga/
 
+Dicas:
 1) A aluna de calça Branca está em algum lugar à esquerda da aluna que se matriculou em 2014.
 2) Isabela está no segundo lugar.
 3) Marta é Motorista.
