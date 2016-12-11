@@ -87,3 +87,27 @@ nearl(A, B, Ls) :- append(_, [B,A|_], Ls).
 %quando é informado a direita de quem está
 nearr(A, B, Ls) :- append(_, [A,B|_], Ls).
 
+%quem está com a calça branca?
+whiteLegs(Girl) :-
+    slove(S),
+    member(h(branca,Girl,_,_,_,_), S).
+
+%quem pratica a posicão do corvo?
+ravenPosition(Girl) :-
+    slove(S),
+    member(h(_,Girl,corvo,_,_,_), S).
+
+%quem é manicure?
+whoManicure(Girl) :-
+    slove(S),
+    member(h(_,Girl,_,_,_,manicure), S).
+
+%mais velha?
+older(Girl) :-
+    slove(S),
+    member(h(_,Girl,_,_,48,_), S).
+
+%mais nova?
+newer(Girl) :-
+    slove(S),
+    member(h(_,Girl,_,_,24,_), S).
