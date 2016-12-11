@@ -32,11 +32,11 @@ slove(S) :-
     member(h(_,marta,_,_,_,motorista), S),                                           %3
     between(h(_,_,_,_,_,arquiteta), h(verde,_,_,_,_,_),h(_,_,_,_,36,_), S),          %4
     S = [_,_,_,h(_,_,_,_,30,_),_],                                                   %5
-    neare(h(_,_,ponte,_,_,_), h(_,_,_,_,_,manicure), S),                             %6
+    nearl(h(_,_,ponte,_,_,_), h(_,_,_,_,_,manicure), S),                             %6
     near(h(azul,_,_,_,_,_), h(_,_,_,_,48,_), S),                                     %7
     between(h(_,_,_,2012,_,_), h(_,_,_,_,_,psicóloga),h(_,_,_,_,_,comerciante), S),  %8
     rigth(h(branca,_,_,_,_,_), h(_,_,_,_,_,motorista), S),                           %9
-    neare(h(_,_,triângulo,_,_,_), h(_,_,lotus,_,_,_), S),                            %10
+    nearl(h(_,_,triângulo,_,_,_), h(_,_,lotus,_,_,_), S),                            %10
     S = [_,_,_,h(_,_,_,2013,_,_),_],                                                 %11
     between(h(_,_,_,2016,_,_), h(amarela,_,_,_,_,_),h(branca,_,_,_,_,_), S),         %12
     member(h(_,_,lotus,_,42,_), S),                                                  %13
@@ -49,29 +49,7 @@ slove(S) :-
     member(h(vermelha,_,_,_,_,_), S),                                                % não informado nas dicas
     member(h(_,_,_,_,24,_), S),                                                      % não informado nas dicas
     member(h(_,roberta,_,_,_,_), S).                                                 % não informado nas dicas
-  
-%quando é informado a direita de quem está
-neard(A, B, Ls) :- append(_, [A,B|_], Ls).
-
-%quando é informado a esquerda de quem está
-neare(A, B, Ls) :- append(_, [B,A|_], Ls).
-
-%quando não é informado aode quem está
-near(A, B, Ls) :- append(_, [A,B|_], Ls).
-near(A, B, Ls) :- append(_, [B,A|_], Ls).
-
-%quando está entre duas pessoas
-between(A, B, C, Ls) :- append(_, [A,B,_,_,C], Ls).
-between(A, B, C, Ls) :- append(_, [A,_,B,_,C], Ls).
-between(A, B, C, Ls) :- append(_, [A,_,_,B,C], Ls).
-between(A, B, C, Ls) :- append(_, [_,A,B,_,C], Ls).
-between(A, B, C, Ls) :- append(_, [_,A,_,B,C], Ls).
-between(A, B, C, Ls) :- append(_, [_,_,A,B,C], Ls).
-between(A, B, C, Ls) :- append(_, [A,B,_,C,_], Ls).
-between(A, B, C, Ls) :- append(_, [A,_,B,C,_], Ls).
-between(A, B, C, Ls) :- append(_, [_,A,B,C,_], Ls).
-between(A, B, C, Ls) :- append(_, [A,B,C,_,_], Ls).
-
+ 
 %testa todas que estão ao lado direito, quando não sei quem está ao lado
 rigth(A, B, Ls) :- append(_, [A,B,_,_,_], Ls).
 rigth(A, B, Ls) :- append(_, [A,_,B,_,_], Ls).
@@ -86,3 +64,26 @@ rigth(A, B, Ls) :- append(_, [_,_,_,A,B], Ls).
 
 %testa todas que estão ao lado esquerdo, quando não sei quem está ao lado
 left(A, B, Ls) :- rigth(B,A,Ls).
+
+%quando está entre duas pessoas
+between(A, B, C, Ls) :- append(_, [A,B,_,_,C], Ls).
+between(A, B, C, Ls) :- append(_, [A,_,B,_,C], Ls).
+between(A, B, C, Ls) :- append(_, [A,_,_,B,C], Ls).
+between(A, B, C, Ls) :- append(_, [_,A,B,_,C], Ls).
+between(A, B, C, Ls) :- append(_, [_,A,_,B,C], Ls).
+between(A, B, C, Ls) :- append(_, [_,_,A,B,C], Ls).
+between(A, B, C, Ls) :- append(_, [A,B,_,C,_], Ls).
+between(A, B, C, Ls) :- append(_, [A,_,B,C,_], Ls).
+between(A, B, C, Ls) :- append(_, [_,A,B,C,_], Ls).
+between(A, B, C, Ls) :- append(_, [A,B,C,_,_], Ls).
+
+%quando não é informado aode quem está
+near(A, B, Ls) :- append(_, [A,B|_], Ls).
+near(A, B, Ls) :- append(_, [B,A|_], Ls).
+
+%quando é informado a esquerda de quem está
+nearl(A, B, Ls) :- append(_, [B,A|_], Ls).
+
+%quando é informado a direita de quem está
+nearr(A, B, Ls) :- append(_, [A,B|_], Ls).
+
