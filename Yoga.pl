@@ -25,40 +25,42 @@ Dicas:
 */
 
 :- use_rendering(table,[header(h('Calça', 'Nome', 'Posição', 'Matrícula', 'Idade', 'Profissão'))]).
-solucao(Hs) :-
-    length(Hs, 5),
-    esquerda(h(_,_,_,2014,_,_), h(branca,_,_,_,_,_), Hs),							%1
-    Hs = [_,h(_,isabela,_,_,_,_),_,_,_],											%2
-    member(h(_,marta,_,_,_,motorista), Hs),											%3
-    entre2(h(_,_,_,_,_,arquiteta), h(verde,_,_,_,_,_),h(_,_,_,_,36,_), Hs),   	  	%4
-    Hs = [_,_,_,h(_,_,_,_,30,_),_],										      		%5
-    nexte(h(_,_,ponte,_,_,_), h(_,_,_,_,_,manicure), Hs),							%6
-    next(h(azul,_,_,_,_,_), h(_,_,_,_,48,_), Hs),	                    	     	%7
-    entre2(h(_,_,_,2012,_,_), h(_,_,_,_,_,psicóloga),h(_,_,_,_,_,comerciante), Hs),	%8
-    direita(h(branca,_,_,_,_,_), h(_,_,_,_,_,motorista), Hs),						%9
-    nexte(h(_,_,triângulo,_,_,_), h(_,_,lotus,_,_,_), Hs),							%10
-    Hs = [_,_,_,h(_,_,_,2013,_,_),_],										      	%11
-    entre2(h(_,_,_,2016,_,_), h(amarela,_,_,_,_,_),h(branca,_,_,_,_,_), Hs),		%12
-    member(h(_,_,lotus,_,42,_), Hs),												%13
-    direita(h(verde,_,_,_,_,_), h(_,alice,_,_,_,_), Hs),							%14
-    Hs = [h(_,_,corvo,_,_,_),_,_,_,_],										      	%15
-    next(h(_,_,_,_,42,_), h(_,_,_,_,48,_), Hs),	                    	     		%16
-    entre2(h(_,_,_,2012,_,_), h(_,_,_,2016,_,_),h(_,_,_,2015,_,_), Hs),				%17
-    esquerda(h(branca,_,_,_,_,_),h(_,_,árvore,_,_,_), Hs),							%18
-    next(h(_,giovana,_,_,_,_), h(_,_,_,_,_,comerciante), Hs),	                    %19
-    member(h(vermelha,_,_,_,_,_), Hs),												% não informado nas dicas
-    member(h(_,_,_,_,24,_), Hs),													% não informado nas dicas
-    member(h(_,roberta,_,_,_,_), Hs).												% não informado nas dicas
+solucao(S) :-
+    length(S, 5),
+    esquerda(h(_,_,_,2014,_,_), h(branca,_,_,_,_,_), S),							%1
+    S = [_,h(_,isabela,_,_,_,_),_,_,_],											%2
+    member(h(_,marta,_,_,_,motorista), S),											%3
+    entre2(h(_,_,_,_,_,arquiteta), h(verde,_,_,_,_,_),h(_,_,_,_,36,_), S),   	  	%4
+    S = [_,_,_,h(_,_,_,_,30,_),_],										      		%5
+    proximoe(h(_,_,ponte,_,_,_), h(_,_,_,_,_,manicure), S),						%6
+    proximo(h(azul,_,_,_,_,_), h(_,_,_,_,48,_), S),	                    	    %7
+    entre2(h(_,_,_,2012,_,_), h(_,_,_,_,_,psicóloga),h(_,_,_,_,_,comerciante), S),	%8
+    direita(h(branca,_,_,_,_,_), h(_,_,_,_,_,motorista), S),						%9
+    proximoe(h(_,_,triângulo,_,_,_), h(_,_,lotus,_,_,_), S),						%10
+    S = [_,_,_,h(_,_,_,2013,_,_),_],										      	%11
+    entre2(h(_,_,_,2016,_,_), h(amarela,_,_,_,_,_),h(branca,_,_,_,_,_), S),		%12
+    member(h(_,_,lotus,_,42,_), S),												%13
+    direita(h(verde,_,_,_,_,_), h(_,alice,_,_,_,_), S),							%14
+    S = [h(_,_,corvo,_,_,_),_,_,_,_],										      	%15
+    proximo(h(_,_,_,_,42,_), h(_,_,_,_,48,_), S),	                    	     	%16
+    entre2(h(_,_,_,2012,_,_), h(_,_,_,2016,_,_),h(_,_,_,2015,_,_), S),				%17
+    esquerda(h(branca,_,_,_,_,_),h(_,_,árvore,_,_,_), S),							%18
+    proximo(h(_,giovana,_,_,_,_), h(_,_,_,_,_,comerciante), S),	                %19
+    member(h(vermelha,_,_,_,_,_), S),												% não informado nas dicas
+    member(h(_,_,_,_,24,_), S),													% não informado nas dicas
+    member(h(_,roberta,_,_,_,_), S).												% não informado nas dicas
   
+%quando é informado a direita de quem está
+proximod(A, B, Ls) :- append(_, [A,B|_], Ls).
 
-nextd(A, B, Ls) :- append(_, [A,B|_], Ls).
-nexte(A, B, Ls) :- append(_, [B,A|_], Ls).
+%quando é informado a esquerda de quem está
+proximoe(A, B, Ls) :- append(_, [B,A|_], Ls).
 
-next(A, B, Ls) :- append(_, [A,B|_], Ls).
-next(A, B, Ls) :- append(_, [B,A|_], Ls).
+%quando não é informado aode quem está
+proximo(A, B, Ls) :- append(_, [A,B|_], Ls).
+proximo(A, B, Ls) :- append(_, [B,A|_], Ls).
 
-entre(A, B,C, Ls) :- append(_, [A,B,C|_], Ls).
-
+%quando está entre duas pessoas
 entre2(A, B, C, Ls) :- append(_, [A,B,_,_,C], Ls).
 entre2(A, B, C, Ls) :- append(_, [A,_,B,_,C], Ls).
 entre2(A, B, C, Ls) :- append(_, [A,_,_,B,C], Ls).
@@ -70,6 +72,7 @@ entre2(A, B, C, Ls) :- append(_, [A,_,B,C,_], Ls).
 entre2(A, B, C, Ls) :- append(_, [_,A,B,C,_], Ls).
 entre2(A, B, C, Ls) :- append(_, [A,B,C,_,_], Ls).
 
+%testa todas que estão ao lado direito, quando não sei quem está ao lado
 direita(A, B, Ls) :- append(_, [A,B,_,_,_], Ls).
 direita(A, B, Ls) :- append(_, [A,_,B,_,_], Ls).
 direita(A, B, Ls) :- append(_, [A,_,_,B,_], Ls).
@@ -81,5 +84,6 @@ direita(A, B, Ls) :- append(_, [_,_,A,B,_], Ls).
 direita(A, B, Ls) :- append(_, [_,_,A,_,B], Ls).
 direita(A, B, Ls) :- append(_, [_,_,_,A,B], Ls).
 
+%testa todas que estão ao lado esquerdo, quando não sei quem está ao lado
 esquerda(A, B, Ls) :- direita(B,A,Ls).
 
